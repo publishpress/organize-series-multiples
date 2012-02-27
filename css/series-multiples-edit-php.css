@@ -1,0 +1,21 @@
+.odd {
+	background: #f1edd0;
+}
+
+#series-checklist-ul .series-li {
+	height: 30px;
+}
+
+#series-checklist-ul .to_series_part {
+	float:right;
+}
+
+#series-checklist-ul .series_part {
+	margin-top: 4px;
+	margin-right: 4px;
+}
+
+#series-checklist-ul .series-li-input {
+	margin-top: 8px;
+	margin-left: 5px;
+}
