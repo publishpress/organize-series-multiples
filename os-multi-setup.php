@@ -186,21 +186,25 @@ class osMulti {
 		
 		$args = wp_parse_args($args, $defaults);
 		extract( $args, EXTR_SKIP );
+
+		$post_id = (int) $post_id;
 		
-		if ( empty($walker) || !is_a($walker, 'Walker') )
+		if ( empty($walker) || !is_a($walker, 'Walker') ) 
 			$walker = new Walker_SeriesChecklist;
 		
 		$tax = get_taxonomy($taxonomy);
 		$args['disabled'] = !current_user_can($tax->cap->assign_terms);
 		
-		if ( is_array( $selected_cats ) )
-			$args['selected_series'] = $selected_series;
 		
-		elseif ( $post_id )
+		$args['selected_series'] = (array) $selected_series;
+		
+		
+		if ( $post_id ) {
 			$args['selected_series'] = wp_get_object_terms($post_id, $taxonomy, array_merge($args, array('fields' => 'ids')));
 		
-		else
+		} else {
 			$args['selected_series'] = array();
+		}
 			
 		
 		if ( is_array( $popular_series ) )
@@ -221,7 +225,6 @@ class osMulti {
 		}	
 		
 		$args['series_parts'] = $sp;
-		
 					
 		if ( $checked_ontop ) {
 			//Post process $series rather than adding an exclude to the get_terms() query to keep the query the same across all posts (for any query cache)
