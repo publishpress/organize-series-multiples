@@ -193,7 +193,7 @@ class osMulti {
 		$tax = get_taxonomy($taxonomy);
 		$args['disabled'] = !current_user_can($tax->cap->assign_terms);
 		
-		if ( is_array( $selected_cats ) )
+		if ( is_array( $selected_series ) )
 			$args['selected_series'] = $selected_series;
 		
 		elseif ( $post_id )
