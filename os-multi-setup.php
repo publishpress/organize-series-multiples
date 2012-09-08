@@ -328,7 +328,7 @@ class osMulti {
 					$drafts_included = '';
 					if($count_draft_posts != 0){
 						$all_serie_posts = $count_draft_posts+$count;
-						$drafts_included = "($all_serie_posts)";
+						$drafts_included = " ($all_serie_posts)";
 					}
                                         
 					if ( get_post_status($id) == 'publish') {
