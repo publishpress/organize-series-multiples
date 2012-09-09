@@ -277,7 +277,7 @@ class osMulti {
 		global $wpdb;
 		seriesicons_delete($series_ID);
 		$series_part = SERIES_PART_KEY.'_'.$series_ID;
-		$wpdb->query( $wpdb->prepare( "DELETE FROM $wpdb->post_meta WHERE meta_key LIKE %s", $series_part) );
+		$wpdb->query( $wpdb->prepare( "DELETE FROM $wpdb->postmeta WHERE meta_key LIKE %s", $series_part) );
 		return;
 	}
 	
