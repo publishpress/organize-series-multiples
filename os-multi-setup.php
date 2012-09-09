@@ -39,7 +39,7 @@ class osMulti {
 		add_action('admin_print_scripts-post.php', array(&$this, 'add_series_js'));
 		add_action('admin_print_scripts-post-new.php', array(&$this, 'add_series_js'));
 		add_action('admin_print_styles-edit.php', array(&$this, 'inline_edit_css'));
-		add_action('wp_ajax_add-series', array(&$this, 'ajax_series'));
+		add_action('wp_ajax_add_series', array(&$this, 'ajax_series'));
 		add_action('add_meta_boxes', array(&$this, 'meta_box'));
 		add_action('delete_series', array(&$this, 'delete_series'), 10, 2);
 		
@@ -95,10 +95,11 @@ class osMulti {
 		$url = OS_MULTI_URL.'js/';
 		$c_url = OS_MULTI_URL.'css/';
 		wp_register_script('inline-edit-series-multiples', $url.'inline-edit-series-multiples.js');
-		wp_register_script('series-multiples-add', $url.'series-multiples.js', array('wp-lists'));
+		wp_register_script('series-multiples-add', $url.'series-multiples.js', array('jquery', 'jquery-ui-core', 'jquery-color'));
 		wp_localize_script('series-multiples-add', 'seriesL10n', array(
 			'add' => esc_attr(__('Add', 'organize-series-multiples')),
-			'how' => __('Select "Not part of a series" to remove any series data from post', 'organize-series-multiples')
+			'how' => __('To remove a post from series, just deselect any checkboxes'),
+			'addnonce' => wp_create_nonce('add-series-nonce')
 			));
 		wp_register_style('series-multiples-inline-edit', $c_url.'series-multiples-edit-php.css');
 	}
@@ -255,25 +256,40 @@ class osMulti {
 	}
 	
 	function ajax_series() {
+		$response = array();
+	
 		if ( !current_user_can( 'manage_series' ) )
-		die('-1');
-		global $wp_taxonomies;
+			$response['error'] = __('Sorry but you don\'t have permission to add series', 'organize-series');
+
+		if ( ! check_ajax_referer ( 'add-series-nonce', 'addnonce', false ) ) {
+			$response['error'] = 'Sorry but security check failed';
+		}
+		$new_nonce = wp_create_nonce('add-series-nonce');
+
 		$name = $_POST['newseries'];
-		$x = new WP_Ajax_Response();
+
 		$series_name = trim($name);
 		if ( !$series_nicename = sanitize_title($series_name) )
-			die('0');
-		if ( !$series_id = series_exists( $series_name ) )
+			$response['error'] = __('The name you picked isn\'t sanitizing correctly. Try something different.', 'organize-series');
+		if ( !$series_id = series_exists( $series_name ) ) {
 			$ser_id = wp_create_single_series( $series_name );
 			$series_id = $ser_id['term_id'];
+		} else {
+			$response['error'] = __('Hmm... it looks like there is already a series with that name. Try something else', 'organize-series');
+		}
+
 		$series_name = esc_html(stripslashes($series_name));
-		$x->add( array(
-			'what' => 'series',
-			'id' => $series_id,
-			'data' => "\n<li id='series-{$series_id}'>".'<span class="to_series_part"><input id="'.$id.$series->term_id.'" type="text" class="series_part" size="3" value="" name="series_part['.$series_id.']" />' ."<label for='in-series-{$series_id}' class='selectit'>" . '<input value="'. $series_id . '" type="checkbox" name="post_series[]" id="in-series-'. $series_id . '" checked />' . $series_name . '</label></li>',
-			'position' => -1
-		) );
-		$x->send();
+
+		if ( !isset($response['error'] ) ) {
+			$response = array(
+				'id' => $series_id,
+				'html' => "\n<li id='series-{$series_id}' class='series-added-indicator'>".'<span class="to_series_part"><input id="series-part-'.$series_id.'" type="text" class="series_part" size="3" value="" name="series_part['.$series_id.']" />' ."<label for='in-series-{$series_id}' class='selectit'>" . '<input value="'. $series_id . '" type="checkbox" name="post_series[]" id="in-series-'. $series_id . '" checked /><span class="li-series-name">' . $series_name . '</span></label></li>',
+				'new_nonce' => $new_nonce,
+				'error' => false
+				);
+		}
+		echo json_encode($response);
+		exit();
 	} 
 	
 	function delete_series($series_ID, $taxonomy_id) {
@@ -377,7 +393,7 @@ class Walker_SeriesChecklist extends Walker {
 		$class .= ( $this->alt&1 ) ? ' odd' : '';
 		$class = 'class="'.$class.'"';
 		$series_part = array_key_exists($series->term_id, $series_parts) ? $series_parts[$series->term_id] : '';
-		$output.= "\n<li id='series-{$series->term_id}'$class>" . '<span class="to_series_part"><input id='.$id.$series->term_id.'" type="text" class="series_part" size="3" value="'.$series_part.'" name="series_part['.$series->term_id.']" /></span><label class="selectit"><input class="series-li-input" value="' . $series->term_id . '" type="checkbox" name="'.$name.'[]" id="in-series-' . $series->term_id .'"' . checked( in_array($series->term_id, $selected_series ), true, false ) . disabled( empty( $args['disabled']), false, false ) . ' /> ' . esc_html( apply_filters('list_series', $series->name, $series )) . '</label>';
+		$output.= "\n<li id='series-{$series->term_id}'$class>" . '<span class="to_series_part"><input id="series-part-'.$series->term_id.'" type="text" class="series_part" size="3" value="'.$series_part.'" name="series_part['.$series->term_id.']" /></span><label class="selectit"><input class="series-li-input" value="' . $series->term_id . '" type="checkbox" name="'.$name.'[]" id="in-series-' . $series->term_id .'"' . checked( in_array($series->term_id, $selected_series ), true, false ) . disabled( empty( $args['disabled']), false, false ) . ' /> ' . esc_html( apply_filters('list_series', $series->name, $series )) . '</label>';
 		$this->alt++;
 	}
 
