@@ -67,11 +67,11 @@ class osMulti {
 	
 	function orgseries_warning() {
 		if ( $this->message_id == 1 ) {
-			$msg = '<div id="wpp-message" class="error fade"><p>'.__('The <strong>Organize Series Multiples</strong> addon for Organize Series requires the Organize Series plugin to be installed and activated in order to work.  Addons won\'t activate until this condition is met.', $this->os_multi_domain).'</p></div>';
+			$msg = '<div id="wpp-message" class="error fade"><p>'.__('The <strong>Organize Series Multiples</strong> addon for Organize Series requires the Organize Series plugin to be installed and activated in order to work.  Addons won\'t activate until this condition is met.', 'organize-series-multiples').'</p></div>';
 		}
 		
 		if ( $this->message_id == 2 ) {
-			$msg = '<div id="wpp-message" class="error fade"><p>' .__('The <strong>Organize Series Multiples</strong> addon for Organize Series requires version 2.3 or greater of Organize Series to be installed and activated in order to work.  Organize Series Multiples has been deactivated.', $this->os_multi_domain).'</p></div>';
+			$msg = '<div id="wpp-message" class="error fade"><p>' .__('The <strong>Organize Series Multiples</strong> addon for Organize Series requires version 2.3 or greater of Organize Series to be installed and activated in order to work.  Organize Series Multiples has been deactivated.', 'organize-series-multiples').'</p></div>';
 		}
 		echo $msg;
 	}
@@ -97,8 +97,8 @@ class osMulti {
 		wp_register_script('inline-edit-series-multiples', $url.'inline-edit-series-multiples.js');
 		wp_register_script('series-multiples-add', $url.'series-multiples.js', array('wp-lists'));
 		wp_localize_script('series-multiples-add', 'seriesL10n', array(
-			'add' => esc_attr(__('Add', $this->os_multi_domain)),
-			'how' => __('Select "Not part of a series" to remove any series data from post', $this->os_multi_domain)
+			'add' => esc_attr(__('Add', 'organize-series-multiples')),
+			'how' => __('Select "Not part of a series" to remove any series data from post', 'organize-series-multiples')
 			));
 		wp_register_style('series-multiples-inline-edit', $c_url.'series-multiples-edit-php.css');
 	}
@@ -134,7 +134,7 @@ class osMulti {
 	
 	function register_textdomain() {
 		$dir = basename(dirname(__FILE__)).'/lang';
-		load_plugin_textdomain($this->os_multi_domain, false, $dir);
+		load_plugin_textdomain('organize-series-multiples', false, $dir);
 	}
 	
 	function part_key($part_key, $series_id) {
@@ -143,12 +143,12 @@ class osMulti {
 	}
 	
 	function inline_edit( $column_name, $type ) {
-		//$this->os_multi_domain
+		//'organize-series-multiples'
 	if ( $type == 'post' && $column_name == 'series' ) {
 		?>
 		<fieldset class="inline-edit-col-right"><div class="inline-edit-col">
 			<div class="inline_edit_series_">
-				<span class="title inline-edit-categories-label"><?php _e('Series:', $this->os_multi_domain); ?></span>
+				<span class="title inline-edit-categories-label"><?php _e('Series:', 'organize-series-multiples'); ?></span>
 				<ul id="series-checklist-ul" class="cat-checklist series-checklist">
 					<?php $this->wp_series_checklist(null, 'name=post_series&class=post_series_select&id=series_part_'); ?>
 				</ul>
@@ -286,7 +286,7 @@ class osMulti {
 	
 	function meta_box() {
 		remove_meta_box('seriesdiv', 'post', 'side'); //remove default meta box included with Organize Series Core plugin
-		add_meta_box('newseriesdiv', __('Series', $this->os_multi_domain), array(&$this, 'add_meta_box'), 'post', 'side');
+		add_meta_box('newseriesdiv', __('Series', 'organize-series-multiples'), array(&$this, 'add_meta_box'), 'post', 'side');
 	}
 	
 	function add_meta_box() {
@@ -301,7 +301,7 @@ class osMulti {
 				<?php $this->wp_series_checklist($post->ID); ?>
 		</ul>
 		
-			<p id="part-description"><?php _e('The part this post is in a series is listed next to each series name.  If you select a series and leave the part number blank then the post will automatically be appended to the end of the series.', $this->os_multi_domain); ?></p>
+			<p id="part-description"><?php _e('The part this post is in a series is listed next to each series name.  If you select a series and leave the part number blank then the post will automatically be appended to the end of the series.', 'organize-series-multiples'); ?></p>
 		<?php
 	}
 	
@@ -322,10 +322,10 @@ class osMulti {
 					$column_content .= "\t\t<li class=\"series-column-li\">";
 					
 					if ( get_post_status($id) == 'publish') {
-						$column_content .= sprintf(__('<a href="%1$s" title="%2$s">%3$s</a> (%4$s of %5$s)', $this->os_multi_domain), $series_link, $series_name, $series_name, $series_part, $count);
+						$column_content .= sprintf(__('<a href="%1$s" title="%2$s">%3$s</a> (%4$s of %5$s)', 'organize-series-multiples'), $series_link, $series_name, $series_name, $series_part, $count);
 						
 					} else {
-						$column_content .= sprintf(__('<a href="%1$s" title="%2$s">%3$s</a> (Currently pt %4$s)', $this->os_multi_domain), $series_link, $series_name, $series_name, $series_part);
+						$column_content .= sprintf(__('<a href="%1$s" title="%2$s">%3$s</a> (Currently pt %4$s)', 'organize-series-multiples'), $series_link, $series_name, $series_name, $series_part);
 					}
 					
 					$column_content .= "</li>\n";
