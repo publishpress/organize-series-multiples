@@ -193,7 +193,7 @@ class osMulti {
 		$tax = get_taxonomy($taxonomy);
 		$args['disabled'] = !current_user_can($tax->cap->assign_terms);
 		
-		if ( is_array( $selected_cats ) )
+		if ( is_array( $selected_series ) )
 			$args['selected_series'] = $selected_series;
 		
 		elseif ( $post_id )
@@ -277,7 +277,7 @@ class osMulti {
 		global $wpdb;
 		seriesicons_delete($series_ID);
 		$series_part = SERIES_PART_KEY.'_'.$series_ID;
-		$wpdb->query( $wpdb->prepare( "DELETE FROM $wpdb->post_meta WHERE meta_key LIKE %s", $series_part) );
+		$wpdb->query( $wpdb->prepare( "DELETE FROM $wpdb->postmeta WHERE meta_key LIKE %s", $series_part) );
 		return;
 	}
 	
@@ -318,11 +318,24 @@ class osMulti {
 					$count = $ser->count;
 					$column_content .= "\t\t<li class=\"series-column-li\">";
 					
+					$draft_posts = get_posts( array(
+						'post_type'	=> 'post',
+						'post_status' => array('draft', 'future', 'pending'),
+						'taxonomy'	=> 'series',
+						'term'	=> $series_name
+					) );
+					$count_draft_posts = count($draft_posts);
+					$drafts_included = '';
+					if($count_draft_posts != 0){
+						$all_serie_posts = $count_draft_posts+$count;
+						$drafts_included = " ($all_serie_posts)";
+					}
+                                        
 					if ( get_post_status($id) == 'publish') {
-						$column_content .= sprintf(__('<a href="%1$s" title="%2$s">%3$s</a> (%4$s of %5$s)', $this->os_multi_domain), $series_link, $series_name, $series_name, $series_part, $count);
+						$column_content .= sprintf(__('<a href="%1$s" title="%2$s">%3$s</a> %4$s of %5$s%6$s', $this->os_multi_domain), $series_link, $series_name, $series_name, $series_part, $count, $drafts_included);
 						
 					} else {
-						$column_content .= sprintf(__('<a href="%1$s" title="%2$s">%3$s</a> (Currently pt %4$s)', $this->os_multi_domain), $series_link, $series_name, $series_name, $series_part);
+						$column_content .= sprintf(__('<a href="%1$s" title="%2$s">%3$s</a> (Currently as %4$s)', $this->os_multi_domain), $series_link, $series_name, $series_name, $series_part);
 					}
 					
 					$column_content .= "</li>\n";
