@@ -174,6 +174,7 @@ class osMulti {
 	}
 	
 	function wp_series_checklist( $post_id = 0, $args = array() ) {
+		$sp = array();
 		$defaults = array(
 			'selected_series' => false,
 			'popular_series' => false,
@@ -296,7 +297,7 @@ class osMulti {
 		global $wpdb;
 		seriesicons_delete($series_ID);
 		$series_part = SERIES_PART_KEY.'_'.$series_ID;
-		$wpdb->query( $wpdb->prepare( "DELETE FROM $wpdb->post_meta WHERE meta_key LIKE %s", $series_part) );
+		$wpdb->query( $wpdb->prepare( "DELETE FROM $wpdb->postmeta WHERE meta_key LIKE %s", $series_part) );
 		return;
 	}
 	
@@ -351,10 +352,10 @@ class osMulti {
 					}
                                         
 					if ( get_post_status($id) == 'publish') {
-						$column_content .= sprintf(__('<a href="%1$s" title="%2$s">%3$s</a> %4$s of %5$s%6$s', $this->os_multi_domain), $series_link, $series_name, $series_name, $series_part, $count, $drafts_included);
+						$column_content .= sprintf(__('<a href="%1$s" title="%2$s">%3$s</a> %4$s of %5$s%6$s', 'organize-series-multiples'), $series_link, $series_name, $series_name, $series_part, $count, $drafts_included);
 						
 					} else {
-						$column_content .= sprintf(__('<a href="%1$s" title="%2$s">%3$s</a> (Currently as %4$s)', $this->os_multi_domain), $series_link, $series_name, $series_name, $series_part);
+						$column_content .= sprintf(__('<a href="%1$s" title="%2$s">%3$s</a> (Currently as %4$s)', 'organize-series-multiples'), $series_link, $series_name, $series_name, $series_part);
 					}
 					
 					$column_content .= "</li>\n";
