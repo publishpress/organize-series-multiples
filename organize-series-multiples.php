@@ -11,7 +11,7 @@ Author URI: http://www.unfoldingneurons.com
 $orgseries_mult_ver = '0.5';
 
 /* LICENSE */
-//"Organize Series Plugin" and all addons for it created by this author are copyright (c) 2007-2011 Darren Ethier. This program is free software; you can redistribute it and/or
+//"Organize Series Plugin" and all addons for it created by this author are copyright (c) 2007-2012 Darren Ethier. This program is free software; you can redistribute it and/or
 // modify it under the terms of the GNU General Public License
 // as published by the Free Software Foundation; either version 2
 // of the License, or (at your option) any later version.
@@ -61,7 +61,7 @@ function os_multiples_remove_actions() {
 	remove_action('quick_edit_custom_box', 'inline_edit_series', 9, 2);
 	remove_action('manage_posts_custom_column', 'orgSeries_custom_column_action', 12, 2);
 	remove_action('admin_print_scripts-edit.php', 'inline_edit_series_js');
-	remove_action('wp_ajax_add-series', 'admin_ajax_series');
+	remove_action('wp_ajax_add_series', 'admin_ajax_series');
 	remove_action('admin_print_scripts-post.php', 'orgSeries_post_script');
 	remove_action('admin_print_scripts-post-new.php', 'orgSeries_post_script');
 	remove_action('delete_series', 'wp_delete_series', 10, 2);
