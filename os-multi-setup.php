@@ -326,6 +326,7 @@ class osMulti {
 		$seriesid = null;
 		$series_part = null;
 		$series_name = null;
+		$post_types = apply_filters('orgseries_posttype_support', array('post'));
 		if ($column_name == 'series') {
 			$column_content = "<div class=\"series_column\">\n";	
 			if ( $series = get_the_series($id, false) ) {
@@ -339,7 +340,7 @@ class osMulti {
 					$column_content .= "\t\t<li class=\"series-column-li\">";
 					
 					$draft_posts = get_posts( array(
-						'post_type'	=> 'post',
+						'post_type'	=> $post_types,
 						'post_status' => array('draft', 'future', 'pending'),
 						'taxonomy'	=> 'series',
 						'term'	=> $series_name
