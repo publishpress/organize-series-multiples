@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Organize Series Multiples\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-09-09 21:10-0500\n"
-"PO-Revision-Date: 2012-09-09 21:10-0500\n"
+"POT-Creation-Date: 2012-09-23 19:05-0500\n"
+"PO-Revision-Date: 2012-09-23 19:06-0500\n"
 "Last-Translator: Darren Ethier <darren@roughsmootheng.in>\n"
 "Language-Team: Darren Ethier <darren@organizeseries.com>\n"
 "MIME-Version: 1.0\n"
@@ -13,6 +13,7 @@ msgstr ""
 "X-Poedit-Basepath: /Users/drenobi/Documents/Dropbox/WebProjects/htdocs/"
 "orgseries-testing/wp-content/plugins/organize-series-multiples\n"
 "X-Poedit-SourceCharset: UTF-8\n"
+"X-Generator: Poedit 1.5.3\n"
 "X-Poedit-SearchPath-0: /Users/drenobi/Documents/Dropbox/WebProjects/htdocs/"
 "orgseries-testing/wp-content/plugins/organize-series-multiples\n"
 
@@ -38,42 +39,42 @@ msgstr ""
 msgid "To remove a post from series, just deselect any checkboxes"
 msgstr ""
 
-#: /Users/drenobi/Documents/Dropbox/WebProjects/htdocs/orgseries-testing/wp-content/plugins/organize-series-multiples/os-multi-setup.php:152
+#: /Users/drenobi/Documents/Dropbox/WebProjects/htdocs/orgseries-testing/wp-content/plugins/organize-series-multiples/os-multi-setup.php:153
 msgid "Series:"
 msgstr ""
 
-#: /Users/drenobi/Documents/Dropbox/WebProjects/htdocs/orgseries-testing/wp-content/plugins/organize-series-multiples/os-multi-setup.php:262
+#: /Users/drenobi/Documents/Dropbox/WebProjects/htdocs/orgseries-testing/wp-content/plugins/organize-series-multiples/os-multi-setup.php:264
 msgid "Sorry but you don't have permission to add series"
 msgstr ""
 
-#: /Users/drenobi/Documents/Dropbox/WebProjects/htdocs/orgseries-testing/wp-content/plugins/organize-series-multiples/os-multi-setup.php:273
+#: /Users/drenobi/Documents/Dropbox/WebProjects/htdocs/orgseries-testing/wp-content/plugins/organize-series-multiples/os-multi-setup.php:275
 msgid ""
 "The name you picked isn't sanitizing correctly. Try something different."
 msgstr ""
 
-#: /Users/drenobi/Documents/Dropbox/WebProjects/htdocs/orgseries-testing/wp-content/plugins/organize-series-multiples/os-multi-setup.php:278
+#: /Users/drenobi/Documents/Dropbox/WebProjects/htdocs/orgseries-testing/wp-content/plugins/organize-series-multiples/os-multi-setup.php:280
 msgid ""
 "Hmm... it looks like there is already a series with that name. Try something "
 "else"
 msgstr ""
 
-#: /Users/drenobi/Documents/Dropbox/WebProjects/htdocs/orgseries-testing/wp-content/plugins/organize-series-multiples/os-multi-setup.php:305
+#: /Users/drenobi/Documents/Dropbox/WebProjects/htdocs/orgseries-testing/wp-content/plugins/organize-series-multiples/os-multi-setup.php:309
 msgid "Series"
 msgstr ""
 
-#: /Users/drenobi/Documents/Dropbox/WebProjects/htdocs/orgseries-testing/wp-content/plugins/organize-series-multiples/os-multi-setup.php:320
+#: /Users/drenobi/Documents/Dropbox/WebProjects/htdocs/orgseries-testing/wp-content/plugins/organize-series-multiples/os-multi-setup.php:326
 msgid ""
 "The part this post is in a series is listed next to each series name.  If "
 "you select a series and leave the part number blank then the post will "
 "automatically be appended to the end of the series."
 msgstr ""
 
-#: /Users/drenobi/Documents/Dropbox/WebProjects/htdocs/orgseries-testing/wp-content/plugins/organize-series-multiples/os-multi-setup.php:341
+#: /Users/drenobi/Documents/Dropbox/WebProjects/htdocs/orgseries-testing/wp-content/plugins/organize-series-multiples/os-multi-setup.php:361
 #, php-format
-msgid "<a href=\"%1$s\" title=\"%2$s\">%3$s</a> (%4$s of %5$s)"
+msgid "<a href=\"%1$s\" title=\"%2$s\">%3$s</a> %4$s of %5$s%6$s"
 msgstr ""
 
-#: /Users/drenobi/Documents/Dropbox/WebProjects/htdocs/orgseries-testing/wp-content/plugins/organize-series-multiples/os-multi-setup.php:344
+#: /Users/drenobi/Documents/Dropbox/WebProjects/htdocs/orgseries-testing/wp-content/plugins/organize-series-multiples/os-multi-setup.php:364
 #, php-format
-msgid "<a href=\"%1$s\" title=\"%2$s\">%3$s</a> (Currently pt %4$s)"
+msgid "<a href=\"%1$s\" title=\"%2$s\">%3$s</a> (Currently as %4$s)"
 msgstr ""
