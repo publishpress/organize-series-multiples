@@ -145,7 +145,8 @@ class osMulti {
 	
 	function inline_edit( $column_name, $type ) {
 		//'organize-series-multiples'
-	if ( $type == 'post' && $column_name == 'series' ) {
+	$posttypes = apply_filters('orgseries_posttype_support', array('post') );
+	if ( in_array($type, $posttypes) && $column_name == 'series' ) {
 		?>
 		<fieldset class="inline-edit-col-right"><div class="inline-edit-col">
 			<div class="inline_edit_series_">
@@ -302,8 +303,12 @@ class osMulti {
 	}
 	
 	function meta_box() {
-		remove_meta_box('seriesdiv', 'post', 'side'); //remove default meta box included with Organize Series Core plugin
-		add_meta_box('newseriesdiv', __('Series', 'organize-series-multiples'), array(&$this, 'add_meta_box'), 'post', 'side');
+		$posttypes = apply_filters('orgseries_posttype_support', array('post') );
+		foreach ($posttypes as $posttype) {
+			remove_meta_box('seriesdiv', $posttype, 'side'); //remove default meta box included with Organize Series Core plugin
+			add_meta_box('newseriesdiv', __('Series', 'organize-series-multiples'), array(&$this, 'add_meta_box'), 
+				$posttype, 'side');
+		}
 	}
 	
 	function add_meta_box() {
@@ -326,6 +331,7 @@ class osMulti {
 		$seriesid = null;
 		$series_part = null;
 		$series_name = null;
+		$post_types = apply_filters('orgseries_posttype_support', array('post'));
 		if ($column_name == 'series') {
 			$column_content = "<div class=\"series_column\">\n";	
 			if ( $series = get_the_series($id, false) ) {
@@ -339,7 +345,7 @@ class osMulti {
 					$column_content .= "\t\t<li class=\"series-column-li\">";
 					
 					$draft_posts = get_posts( array(
-						'post_type'	=> 'post',
+						'post_type'	=> $post_types,
 						'post_status' => array('draft', 'future', 'pending'),
 						'taxonomy'	=> 'series',
 						'term'	=> $series_name
