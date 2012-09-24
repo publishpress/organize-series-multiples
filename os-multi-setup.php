@@ -31,10 +31,10 @@ class osMulti {
 		add_action('plugins_loaded', array(&$this, 'add_settings'));
 		add_action('init', array(&$this, 'register_textdomain'));
 		add_action('init', array(&$this, 'register_scripts_styles'));
+		add_action('admin_init', array($this, 'load_custom_columns'));
 		
 		//replacing organize series hooks/filters
 		add_action('quick_edit_custom_box', array(&$this, 'inline_edit'), 9, 2);
-		add_action('manage_posts_custom_column', array(&$this, 'posts_custom_column_action'), 12, 2);
 		add_action('admin_print_scripts-edit.php', array(&$this, 'inline_edit_js'));
 		add_action('admin_print_scripts-post.php', array(&$this, 'add_series_js'));
 		add_action('admin_print_scripts-post-new.php', array(&$this, 'add_series_js'));
@@ -47,6 +47,15 @@ class osMulti {
 		add_filter('orgseries_part_key', array(&$this, 'part_key'), 10, 2);
 		add_filter('orgseries_sort_series_page_where', array(&$this, 'sort_series'));
 		
+	}
+
+	function load_custom_columns() {
+		$posttypes = apply_filters('orgseries_posttype_support', array('post') );
+		foreach ( $posttypes as $posttype ) {
+			$filter_ref = ( $posttype == 'post' ) ? 'manage_posts_custom_column' : 'manage_' . $posttype . 'posts_custom_column';
+			$filter_ref = ( $posttype == 'page' ) ? 'manage_pages_custom_column' : $filter_ref;
+			add_action($filter_ref, array($this, 'posts_custom_column_action'), 12, 2);
+		}
 	}
 	
 	function orgseries_check() {

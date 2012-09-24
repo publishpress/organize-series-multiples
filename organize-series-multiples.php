@@ -65,6 +65,7 @@ function os_multiples_remove_actions() {
 	remove_action('admin_print_scripts-post.php', 'orgSeries_post_script');
 	remove_action('admin_print_scripts-post-new.php', 'orgSeries_post_script');
 	remove_action('delete_series', 'wp_delete_series', 10, 2);
+	remove_action('admin_init', 'orgseries_load_custom_column_actions', 10);
 }
 //let's initialize the plugin
 $osMulti = new osMulti();
