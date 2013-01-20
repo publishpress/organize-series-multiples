@@ -324,6 +324,7 @@ class osMulti {
 		global $post, $postdata, $content;
 		$id = isset($post) ? $post->ID : $postdata->ID;
 		$ser_id = wp_get_post_series( $id );
+		$ser_id = is_array($ser_id) && isset($ser_id[0]) ? $ser_id[0] : '';
 		if (current_user_can('manage_series')) {
 		?>
 		<p id="jaxseries"></p>
@@ -336,7 +337,7 @@ class osMulti {
 			<p id="part-description"><?php _e('The part this post is in a series is listed next to each series name.  If you select a series and leave the part number blank then the post will automatically be appended to the end of the series.', 'organize-series-multiples'); ?></p></br>
 			<strong> <?php _e('Post title in widget:', 'organize-series'); ?></strong>
 		<p id="part-description"><?php _e('A "short" title of the post that will be used in the series widget. [Leave blank to use a full title]', 'organize-series'); ?></p>
-		<input type="text" name="serie_post_shorttitle[<?php echo $ser_id[0]; ?>]" id="serie_post_shorttitle" size="40" value="<?php echo get_post_meta($id, SPOST_SHORTTITLE_KEY, true); ?>"/>
+		<input type="text" name="serie_post_shorttitle[<?php echo $ser_id; ?>]" id="serie_post_shorttitle" style="width: 100%" value="<?php echo get_post_meta($id, SPOST_SHORTTITLE_KEY, true); ?>"/>
 		<?php
 	}
 	
