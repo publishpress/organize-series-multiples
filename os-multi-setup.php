@@ -164,6 +164,7 @@ class osMulti {
 					<?php $this->wp_series_checklist(null, 'name=post_series&class=post_series_select&id=series_part_'); ?>
 				</ul>
 				<input type="hidden" name="series_post_id" class="series_post_id"  />
+				<input type="hidden" name="is_series_save" value="1" />
 			
 			
 		</div></div></fieldset>
@@ -294,7 +295,7 @@ class osMulti {
 		if ( !isset($response['error'] ) ) {
 			$response = array(
 				'id' => $series_id,
-				'html' => "\n<li id='series-{$series_id}' class='series-added-indicator'>".'<span class="to_series_part"><input id="series-part-'.$series_id.'" type="text" class="series_part" size="3" value="" name="series_part['.$series_id.']" />' ."<label for='in-series-{$series_id}' class='selectit'>" . '<input value="'. $series_id . '" type="checkbox" name="post_series[]" id="in-series-'. $series_id . '" checked /><span class="li-series-name">' . $series_name . '</span></label></li>',
+				'html' => "\n<li id='series-{$series_id}' class='series-added-indicator'>".'<span class="to_series_part"><input id="series-part-'.$series_id.'" type="text" class="series_part" size="3" value="" name="series_part['.$series_id.']" />' ."<label for='in-series-{$series_id}' class='selectit'>" . '<input value="'. $series_id . '" type="checkbox" name="post_series[]" id="in-series-'. $series_id . '" checked /><input type="hidden" name="is_series_save" value="1" /><span class="li-series-name">' . $series_name . '</span></label></li>',
 				'new_nonce' => $new_nonce,
 				'error' => false
 				);
@@ -338,6 +339,7 @@ class osMulti {
 			<strong> <?php _e('Post title in widget:', 'organize-series'); ?></strong>
 		<p id="part-description"><?php _e('A "short" title of the post that will be used in the series widget. [Leave blank to use a full title]', 'organize-series'); ?></p>
 		<input type="text" name="serie_post_shorttitle[<?php echo $ser_id; ?>]" id="serie_post_shorttitle" style="width: 100%" value="<?php echo get_post_meta($id, SPOST_SHORTTITLE_KEY, true); ?>"/>
+		<input type="hidden" name="is_series_save" value="1" />
 		<?php
 	}
 	
