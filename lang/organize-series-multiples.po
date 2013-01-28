@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Organize Series Multiples\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-09-23 19:05-0500\n"
-"PO-Revision-Date: 2012-09-23 19:06-0500\n"
+"POT-Creation-Date: 2013-01-27 20:22-0500\n"
+"PO-Revision-Date: 2013-01-27 20:22-0500\n"
 "Last-Translator: Darren Ethier <darren@roughsmootheng.in>\n"
 "Language-Team: Darren Ethier <darren@organizeseries.com>\n"
 "MIME-Version: 1.0\n"
@@ -13,68 +13,78 @@ msgstr ""
 "X-Poedit-Basepath: /Users/drenobi/Documents/Dropbox/WebProjects/htdocs/"
 "orgseries-testing/wp-content/plugins/organize-series-multiples\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-Generator: Poedit 1.5.3\n"
+"X-Generator: Poedit 1.5.4\n"
 "X-Poedit-SearchPath-0: /Users/drenobi/Documents/Dropbox/WebProjects/htdocs/"
 "orgseries-testing/wp-content/plugins/organize-series-multiples\n"
 
-#: /Users/drenobi/Documents/Dropbox/WebProjects/htdocs/orgseries-testing/wp-content/plugins/organize-series-multiples/os-multi-setup.php:70
+#: /Users/drenobi/Documents/Dropbox/WebProjects/htdocs/orgseries-testing/wp-content/plugins/organize-series-multiples/os-multi-setup.php:79
 msgid ""
 "The <strong>Organize Series Multiples</strong> addon for Organize Series "
 "requires the Organize Series plugin to be installed and activated in order "
 "to work.  Addons won't activate until this condition is met."
 msgstr ""
 
-#: /Users/drenobi/Documents/Dropbox/WebProjects/htdocs/orgseries-testing/wp-content/plugins/organize-series-multiples/os-multi-setup.php:74
+#: /Users/drenobi/Documents/Dropbox/WebProjects/htdocs/orgseries-testing/wp-content/plugins/organize-series-multiples/os-multi-setup.php:83
 msgid ""
 "The <strong>Organize Series Multiples</strong> addon for Organize Series "
 "requires version 2.3 or greater of Organize Series to be installed and "
 "activated in order to work.  Organize Series Multiples has been deactivated."
 msgstr ""
 
-#: /Users/drenobi/Documents/Dropbox/WebProjects/htdocs/orgseries-testing/wp-content/plugins/organize-series-multiples/os-multi-setup.php:100
+#: /Users/drenobi/Documents/Dropbox/WebProjects/htdocs/orgseries-testing/wp-content/plugins/organize-series-multiples/os-multi-setup.php:109
 msgid "Add"
 msgstr ""
 
-#: /Users/drenobi/Documents/Dropbox/WebProjects/htdocs/orgseries-testing/wp-content/plugins/organize-series-multiples/os-multi-setup.php:101
+#: /Users/drenobi/Documents/Dropbox/WebProjects/htdocs/orgseries-testing/wp-content/plugins/organize-series-multiples/os-multi-setup.php:110
 msgid "To remove a post from series, just deselect any checkboxes"
 msgstr ""
 
-#: /Users/drenobi/Documents/Dropbox/WebProjects/htdocs/orgseries-testing/wp-content/plugins/organize-series-multiples/os-multi-setup.php:153
+#: /Users/drenobi/Documents/Dropbox/WebProjects/htdocs/orgseries-testing/wp-content/plugins/organize-series-multiples/os-multi-setup.php:162
 msgid "Series:"
 msgstr ""
 
-#: /Users/drenobi/Documents/Dropbox/WebProjects/htdocs/orgseries-testing/wp-content/plugins/organize-series-multiples/os-multi-setup.php:264
+#: /Users/drenobi/Documents/Dropbox/WebProjects/htdocs/orgseries-testing/wp-content/plugins/organize-series-multiples/os-multi-setup.php:274
 msgid "Sorry but you don't have permission to add series"
 msgstr ""
 
-#: /Users/drenobi/Documents/Dropbox/WebProjects/htdocs/orgseries-testing/wp-content/plugins/organize-series-multiples/os-multi-setup.php:275
+#: /Users/drenobi/Documents/Dropbox/WebProjects/htdocs/orgseries-testing/wp-content/plugins/organize-series-multiples/os-multi-setup.php:285
 msgid ""
 "The name you picked isn't sanitizing correctly. Try something different."
 msgstr ""
 
-#: /Users/drenobi/Documents/Dropbox/WebProjects/htdocs/orgseries-testing/wp-content/plugins/organize-series-multiples/os-multi-setup.php:280
+#: /Users/drenobi/Documents/Dropbox/WebProjects/htdocs/orgseries-testing/wp-content/plugins/organize-series-multiples/os-multi-setup.php:290
 msgid ""
 "Hmm... it looks like there is already a series with that name. Try something "
 "else"
 msgstr ""
 
-#: /Users/drenobi/Documents/Dropbox/WebProjects/htdocs/orgseries-testing/wp-content/plugins/organize-series-multiples/os-multi-setup.php:309
+#: /Users/drenobi/Documents/Dropbox/WebProjects/htdocs/orgseries-testing/wp-content/plugins/organize-series-multiples/os-multi-setup.php:319
 msgid "Series"
 msgstr ""
 
-#: /Users/drenobi/Documents/Dropbox/WebProjects/htdocs/orgseries-testing/wp-content/plugins/organize-series-multiples/os-multi-setup.php:326
+#: /Users/drenobi/Documents/Dropbox/WebProjects/htdocs/orgseries-testing/wp-content/plugins/organize-series-multiples/os-multi-setup.php:338
 msgid ""
 "The part this post is in a series is listed next to each series name.  If "
 "you select a series and leave the part number blank then the post will "
 "automatically be appended to the end of the series."
 msgstr ""
 
-#: /Users/drenobi/Documents/Dropbox/WebProjects/htdocs/orgseries-testing/wp-content/plugins/organize-series-multiples/os-multi-setup.php:361
+#: /Users/drenobi/Documents/Dropbox/WebProjects/htdocs/orgseries-testing/wp-content/plugins/organize-series-multiples/os-multi-setup.php:339
+msgid "Post title in widget:"
+msgstr ""
+
+#: /Users/drenobi/Documents/Dropbox/WebProjects/htdocs/orgseries-testing/wp-content/plugins/organize-series-multiples/os-multi-setup.php:340
+msgid ""
+"A \"short\" title of the post that will be used in the series widget. [Leave "
+"blank to use a full title]"
+msgstr ""
+
+#: /Users/drenobi/Documents/Dropbox/WebProjects/htdocs/orgseries-testing/wp-content/plugins/organize-series-multiples/os-multi-setup.php:377
 #, php-format
 msgid "<a href=\"%1$s\" title=\"%2$s\">%3$s</a> %4$s of %5$s%6$s"
 msgstr ""
 
-#: /Users/drenobi/Documents/Dropbox/WebProjects/htdocs/orgseries-testing/wp-content/plugins/organize-series-multiples/os-multi-setup.php:364
+#: /Users/drenobi/Documents/Dropbox/WebProjects/htdocs/orgseries-testing/wp-content/plugins/organize-series-multiples/os-multi-setup.php:380
 #, php-format
 msgid "<a href=\"%1$s\" title=\"%2$s\">%3$s</a> (Currently as %4$s)"
 msgstr ""
