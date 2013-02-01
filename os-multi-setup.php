@@ -30,7 +30,7 @@ class osMulti {
 		add_action('activate_organize-series-multiples/organize-series-multiples.php', array(&$this, 'install'));
 		add_action('plugins_loaded', array(&$this, 'add_settings'));
 		add_action('init', array(&$this, 'register_textdomain'));
-		add_action('init', array(&$this, 'register_scripts_styles'));
+		add_action('admin_enqueue_scripts', array(&$this, 'register_scripts_styles'));
 		add_action('admin_init', array($this, 'load_custom_columns'));
 		
 		//replacing organize series hooks/filters
@@ -110,7 +110,7 @@ class osMulti {
 			'how' => __('To remove a post from series, just deselect any checkboxes'),
 			'addnonce' => wp_create_nonce('add-series-nonce')
 			));
-		wp_register_style('series-multiples-inline-edit', $c_url.'series-multiples-edit-php.css');
+		wp_enqueue_style('series-multiples-inline-edit', $c_url.'series-multiples-edit-php.css');
 	}
 	
 	//do stuff that needs to be done with a version upgrade (if necessary)
