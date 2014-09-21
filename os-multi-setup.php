@@ -177,7 +177,9 @@ class osMulti {
 	}
 
 	function add_series_js() {
-		wp_enqueue_script('series-multiples-add');
+		if ( current_user_can( 'manage_series' ) ) {
+			wp_enqueue_script('series-multiples-add');
+		}
 	}
 
 	function inline_edit_css() {
