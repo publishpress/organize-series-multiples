@@ -373,7 +373,8 @@ class osMulti {
 						$drafts_included = " ($all_serie_posts)";
 					}
 
-					if ( get_post_status($id) == 'publish') {
+					$post_status = get_post_status($id);
+					if ( in_array( $post_status, array( 'publish', 'private' ) ) ) {
 						$column_content .= sprintf(__('<a href="%1$s" title="%2$s">%3$s</a> %4$s of %5$s%6$s', 'organize-series-multiples'), $series_link, $series_name, $series_name, $series_part, $count, $drafts_included);
 
 					} else {
