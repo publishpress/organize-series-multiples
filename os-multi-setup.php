@@ -436,7 +436,7 @@ class Walker_SeriesChecklist extends Walker {
 		$this->alt++;
 	}
 
-	function end_el(&$output, $series, $depth, $args) {
+	function end_el( &$output, $series, $depth = 0, $args = array() ) {
 		$output .= "</li>\n";
 	}
 } //end Walker_SeriesChecklist class
