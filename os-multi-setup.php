@@ -94,7 +94,7 @@ class osMulti {
 		$old_version = get_option('os_multi_version');
 
 		if ( empty($old_version) || $this->version == '0.1' ) {
-			if ( $old_version != $this->version || $this->version == '0.1' ) $this->update($oldversion);
+			if ( $old_version != $this->version || $this->version == '0.1' ) $this->update($old_version);
 		}
 
 		update_option('os_multi_version', $this->version);
