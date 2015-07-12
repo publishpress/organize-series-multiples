@@ -21,7 +21,7 @@ class osMulti {
 	var $message_id = 1;
 
 	//__constructor
-	function osMulti() {
+	function __construct() {
 
 		// always check to make sure organize series is running first //
 		add_action('plugins_loaded', array(&$this, 'orgseries_check'));
