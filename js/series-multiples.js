@@ -2,8 +2,7 @@ jQuery( function($) {
 
 	$('#jaxseries').prepend('<span id="series-multiples-add"><input type="text" name="newseries" id="newseries" size="16" autocomplete="off"/><input type="button" name="Button" class="add:serieschecklist:jaxseries" id="seriesadd" value="' + seriesL10n.add + '" /><input type="hidden"/><input type="hidden"/><span id="howto">' + seriesL10n.how + '</span></span><span id="series-ajax-response"></span><span id="add-series-nonce" class="hidden">' + seriesL10n.addnonce + '</span>')
 
-	$('#seriesadd').click( function() {
-		$('input','#serieschecklist').removeProp('checked');
+	$('#jaxseries').on('click', '#seriesadd', function () {
 		/* console.log($('#newseries').val()); /**/
 
 		var data = {
