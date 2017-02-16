@@ -40,7 +40,7 @@ class osMulti {
 		add_action('admin_print_scripts-post-new.php', array(&$this, 'add_series_js'));
 		add_action('admin_print_styles-edit.php', array(&$this, 'inline_edit_css'));
 		add_action('wp_ajax_add_series', array(&$this, 'ajax_series'));
-		add_action('add_meta_boxes', array(&$this, 'meta_box'));
+		add_action('add_meta_boxes', array($this, 'meta_box'));
 		add_action('delete_series', array(&$this, 'delete_series'), 10, 2);
 
 		//hooking into Organize Series
@@ -215,8 +215,7 @@ class osMulti {
 
 
 		if ( $post_id ) {
-			$args['selected_series'] = wp_get_object_terms($post_id, $taxonomy, array_merge($args, array('fields' => 'ids')));
-
+			$args['selected_series'] = wp_get_object_terms($post_id, $taxonomy, array('fields' => 'ids'));
 		} else {
 			$args['selected_series'] = array();
 		}
@@ -318,7 +317,7 @@ class osMulti {
 		$posttypes = apply_filters('orgseries_posttype_support', array('post') );
 		foreach ($posttypes as $posttype) {
 			remove_meta_box('seriesdiv', $posttype, 'side'); //remove default meta box included with Organize Series Core plugin
-			add_meta_box('newseriesdiv', __('Series', 'organize-series-multiples'), array(&$this, 'add_meta_box'),
+			add_meta_box('newseriesdiv', __('Series', 'organize-series-multiples'), array($this, 'add_meta_box'),
 				$posttype, 'side');
 		}
 	}
