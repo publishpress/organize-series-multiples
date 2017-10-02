@@ -9,6 +9,16 @@ Author URI: http://www.unfoldingneurons.com
 */
 
 $orgseries_mult_ver = '1.3';
+require __DIR__ . '/vendor/autoload.php';
+
+/**
+ * @todo
+ * - Class for registering the add-on with RegisteredExtensions, we might need a new service in OS core that's
+ *   used for registering extensions (Extension Registry?) All-addons would use this.
+ * - Register a global "HasHooks" route that's used to always register the add-on extension on every route.
+ * - Add to OS core the automatic initialization of the EDD updater (registered to its own admin-only route?) that automatically
+ *   instantiates an instance of the updater for each registered extension.
+ */
 
 /* LICENSE */
 //"Organize Series Plugin" and all addons for it created by this author are copyright (c) 2007-2012 Darren Ethier. This program is free software; you can redistribute it and/or
@@ -35,38 +45,8 @@ define('OS_MULTI_PATH', $os_multi_plugin_dir);
 define('OS_MULTI_URL', $os_multi_plugin_url);
 define('OS_MULTI_VER', $orgseries_mult_ver); //make sure the version number is available everywhere.
 
-//let's include required files
-require_once(OS_MULTI_PATH.'os-multi-setup.php');
-
-//Automatic Upgrades stuff
-if ( file_exists(WP_PLUGIN_DIR . '/organize-series/inc/pue-client.php') ) {
-	//let's get the client api key for updates
-	$series_settings = get_option('org_series_options');
-	$api_key = $series_settings['orgseries_api'];
-	$host_server_url = 'http://organizeseries.com';
-	$plugin_slug = 'organize-series-multiples';
-	$options = array(
-		'apikey' => $api_key,
-		'lang_domain' => 'organize-series'
-	);
-
-	require( WP_PLUGIN_DIR . '/organize-series/inc/pue-client.php' );
-	$check_for_updates = new PluginUpdateEngineChecker($host_server_url, $plugin_slug, $options);
+//check for php version requirements.  Here we only load up organize series multiples if PHP version is greater than 5.6
+//Organize Series Core will take care of any necessary notice on the PHP version.
+if (version_compare(PHP_VERSION, '5.6') >= 0) {
+    require $os_multi_plugin_dir . 'bootstrap.php';
 }
-
-//let's remove orgSeries core hooks/filter we're replacing
-add_action('init', 'os_multiples_remove_actions');
-
-function os_multiples_remove_actions() {
-	remove_action('quick_edit_custom_box', 'inline_edit_series', 9, 2);
-	remove_action('manage_posts_custom_column', 'orgSeries_custom_column_action', 12, 2);
-	remove_action('admin_print_scripts-edit.php', 'inline_edit_series_js');
-	remove_action('wp_ajax_add_series', 'admin_ajax_series');
-	remove_action('admin_print_scripts-post.php', 'orgSeries_post_script');
-	remove_action('admin_print_scripts-post-new.php', 'orgSeries_post_script');
-	remove_action('delete_series', 'wp_delete_series', 10, 2);
-	remove_action('admin_init', 'orgseries_load_custom_column_actions', 10);
-}
-//let's initialize the plugin
-$osMulti = new osMulti();
-?>
