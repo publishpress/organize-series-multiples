@@ -11,15 +11,6 @@ Author URI: http://www.unfoldingneurons.com
 $orgseries_mult_ver = '1.3';
 require __DIR__ . '/vendor/autoload.php';
 
-/**
- * @todo
- * - Class for registering the add-on with RegisteredExtensions, we might need a new service in OS core that's
- *   used for registering extensions (Extension Registry?) All-addons would use this.
- * - Register a global "HasHooks" route that's used to always register the add-on extension on every route.
- * - Add to OS core the automatic initialization of the EDD updater (registered to its own admin-only route?) that automatically
- *   instantiates an instance of the updater for each registered extension.
- */
-
 /* LICENSE */
 //"Organize Series Plugin" and all addons for it created by this author are copyright (c) 2007-2012 Darren Ethier. This program is free software; you can redistribute it and/or
 // modify it under the terms of the GNU General Public License
@@ -45,8 +36,16 @@ define('OS_MULTI_PATH', $os_multi_plugin_dir);
 define('OS_MULTI_URL', $os_multi_plugin_url);
 define('OS_MULTI_VER', $orgseries_mult_ver); //make sure the version number is available everywhere.
 
-//check for php version requirements.  Here we only load up organize series multiples if PHP version is greater than 5.6
-//Organize Series Core will take care of any necessary notice on the PHP version.
-if (version_compare(PHP_VERSION, '5.6') >= 0) {
+
+/**
+ * This takes allows OS core to take care of the PHP version check
+ * and also ensures we're only using the new style of bootstrapping if the verison of OS core with it is active.
+ */
+add_action('AHOS__bootstrapped', function() use ($os_multi_plugin_dir){
     require $os_multi_plugin_dir . 'bootstrap.php';
-}
+});
+
+//fallback on loading legacy-includes.php in case the bootstrapped stuff isn't ready yet.
+require_once OS_MULTI_PATH . 'legacy-includes.php';
+
+
