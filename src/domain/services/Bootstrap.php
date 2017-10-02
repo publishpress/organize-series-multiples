@@ -67,7 +67,7 @@ class Bootstrap extends AbstractBootstrap
             remove_action('delete_series', 'wp_delete_series', 10);
             remove_action('admin_init', 'orgseries_load_custom_column_actions', 10);
         });
-        new osMulti();
+        new osMulti;
     }
 
     /**
