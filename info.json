@@ -1,0 +1,18 @@
+{
+  "versionFile":"organize-series-multiples.php",
+  "slug":"organize-series-multiples",
+  "textDomain": "organize-series-multiples",
+  "name": "Organize Series Multiples",
+  "releaseFilesRemove": [
+    "src/tests/**",
+    "src/acceptance_tests/**",
+    "src/docs/**",
+    "src/info.json",
+    "src/readme.txt",
+    "src/wp-assets/**",
+    "src/.travis.yml",
+    "src/ISSUE_TEMPLATE.md",
+    "src/PULL_REQUEST_TEMPLATE.md",
+    "src/assets/src/**"
+  ]
+}
