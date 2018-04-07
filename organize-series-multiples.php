@@ -2,13 +2,13 @@
 /*
 Plugin Name: Organize Series Addon: Multiples
 Plugin URI: http://organizeseries.com
-Version: 1.4.0.rc.000
+Version: 1.4.0
 Description: This plugin is an addon for the Organize Series Plugin and requires it to work.  Organize Series Multiples gives the ability for authors to add posts to more than one series. <strong>NOTE: Once activating this plugin IT IS NOT POSSIBLE to roll back to just using Organize Series Core without having to re-edit all your series as Organize Series Multiples changes the way the series parts are saved to allow for multiple series.  USE WITH CARE!!</strong>
 Author: Darren Ethier
 Author URI: http://www.unfoldingneurons.com
 */
 
-$orgseries_mult_ver = '1.4.0.rc.000';
+$orgseries_mult_ver = '1.4.0';
 require __DIR__ . '/vendor/autoload.php';
 
 /* LICENSE */
